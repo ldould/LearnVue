@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- fullName相当于一个属性 -->
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Labron',
+                lastName: 'james'
+
+            },
+            //计算属性
+            computed: {
+
+                fullName: function () {
+                    console.log('fullname')//打印一次，有缓存，性能高
+                    return this.firstName + '' + this.lastName
+                }
+            },
+            methods: {
+                getFullName() {
+                    console.log('fullname')//打印三次，性能低
+                    return this.firstName + '' + this.lastName
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

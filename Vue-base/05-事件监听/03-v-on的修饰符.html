@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div @click="divClick">
+            <!-- 1、.stop修饰符的使用（阻止冒泡事件）调用event.stopPropagation() -->
+            <button @click.stop="btnClick">按钮</button>
+        </div>
+
+        <!-- 2、.prevent修饰符的使用（阻止默认事件）调用event.preventDefault() -->
+        <form action="baidu">
+            <input type="submit" value="提交" @click.prevent="submitClick">
+        </form>
+
+        <!-- 3、监听某个键盘的键帽 -->
+        <!-- 键盘松开时触发 -->
+        <!-- <input type="text" @keyup="keyUp"> -->
+
+        <!-- 监听回车键 -->
+        <input type="text" @keyup.enter="keyUp">
+
+
+        <!-- 4、.noce修饰符的使用 ，只触发一次回调-->
+        <button @click.once="btn2Click">按钮2</button>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+            methods: {
+                btnClick() {
+                    console.log("btnClick") //会出现冒泡事件
+                },
+                divClick() {
+                    console.log("divClick")
+                },
+                submitClick() {
+                    console.log("submitClick")
+                },
+                keyUp() {
+                    console.log("keyUp")
+                },
+                btn2Click() {
+                    console.log("btn2Click")
+                },
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

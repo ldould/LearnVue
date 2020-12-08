@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- v-text 和mustache比较类似，都是将数据显示在页面中（不经常使用） -->
+        <h2 v-text="message"></h2>
+       
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好' 
+            }
+        })
+    </script>
+</body>
+</html>

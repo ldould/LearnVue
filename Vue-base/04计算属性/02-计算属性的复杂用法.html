@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <h2>总价格：{{TotalPrice}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                book: [
+                    { id: 110, name: 'java', price: 119 },
+                    { id: 111, name: 'javascript', price: 150 },
+                    { id: 112, name: 'web前端', price: 100 },
+                    { id: 113, name: 'python', price: 119 },
+                    { id: 114, name: 'php', price: 50 },
+                ]
+
+            },
+            // methods和computed看起来都可以实现我们的功能，而计算属性会进行缓存，
+            // 如果多次使用时，计算属性只会调用一次
+            //计算属性
+            computed: {
+                TotalPrice: function () {
+                    let result = 0;
+                    for (let i = 0; i < this.book.length; i++) {
+                        result += this.book[i].price
+                    }
+                    return result
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

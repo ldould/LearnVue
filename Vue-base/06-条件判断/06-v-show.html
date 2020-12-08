@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- v-if当条件为false时，压根不会有对应得元素在DOM中，（建议只有一次切换时使用）
+        v-show当条件为false时，仅仅将元素得display属性设置为none而已（显示和隐藏之间切换很频繁） -->
+        <h2 v-if="isShow">{{message}}</h2>
+        <h2 v-show="isShow">{{message}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好',
+                isShow: true
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

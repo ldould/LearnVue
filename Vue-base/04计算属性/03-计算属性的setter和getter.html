@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- fullName相当于一个属性 -->
+        <h2>{{fullName}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Labron',
+                lastName: 'james'
+
+            },
+            //计算属性
+            computed: {
+                //计算属性一般是没有set方法，只读属性（原始是有set方法的）
+                // fullName: {
+                //     set: function (newValue) {
+                //将新的值保存
+                // const names = newValue.split(" ");
+                // this.firstName = names[0];
+                // this.lastName = names[1];
+
+                //     },
+                //     get: function () {
+                //         return this.firstName + '' + this.lastName
+                //     }
+                // }
+
+                // fullName: {
+
+                //     get: function () {
+                //         return this.firstName + '' + this.lastName
+                //     }
+                // }
+                //最后的写法，也不需要写get
+                fullName: function () {
+                    return this.firstName + '' + this.lastName
+                }
+            },
+            methods: {
+                getFullName() {
+                    return this.firstName + '' + this.lastName
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

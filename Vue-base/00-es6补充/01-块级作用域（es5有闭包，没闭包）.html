@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+</body>
+<script>
+    //没有块级作用域引起的问题
+    //为什么闭包可以解决问题：函数是一个作用域
+    var btns = document.getElementsByTagName("button");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了') //不管点哪个按钮都是显示第2个按钮被点击了
+        })
+    }
+
+    //1、es5中没有使用闭包（错误）
+    //
+    var i = 2 //这里的i被改成2
+    {
+        var i = 0
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+    var i = 1
+    {
+        var i = 1
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+    var i = 2
+    {
+        var i = 2  //最后这里的i变成2，而全局的i也被改为2
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+
+    //2、es5中使用闭包
+    var btns = document.getElementsByTagName("button");
+    for (var i = 0; i < btns.length; i++) {
+        (function (i) {
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击了')
+            })
+        })(i)
+
+    };
+
+    //函数有作用域，传入i后立即执行
+    (function (i) { //i = 0  有自己的i不会被全局的改变
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    })(0)
+
+        (function (i) { //i = 1
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击了')
+            })
+        })(1)
+
+        (function (i) { //i = 2
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击了')
+            })
+        })(2)
+
+    //es6 let
+    const btns = document.getElementsByTagName("button");
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+    //es6 有块级作用域，内部有自己的i
+    {
+        i = 0
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+    {
+        i = 1
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+    {
+        i = 2
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了')
+        })
+    }
+
+
+
+
+</script>
+
+</html>

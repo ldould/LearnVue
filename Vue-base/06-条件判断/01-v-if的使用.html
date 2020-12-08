@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 通过v-if来控制某个元素的显示与否 true显示，false不显示 -->
+        <!-- <h2 v-if="true">{{message}}</h2>
+        <h2 v-if="false">{{message}}</h2> -->
+
+        <h2 v-if="isShow">{{message}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好',
+                isShow: true
+            },
+
+            methods: {
+                getFullName() {
+                    return this.firstName + '' + this.lastName
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

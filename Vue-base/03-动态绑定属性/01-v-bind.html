@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- v-bind用于绑定一个或多个属性值，或者向另一个组件传递props值 -->
+        <img v-bind:src="imgURL" alt="">
+        <a v-bind:href="aHref">百度一下</a>
+        <!-- 语法糖(即简写方式)的写法 -->
+        <img :src="imgURL" alt="">
+        <a :href="aHref">百度一下</a>
+       
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好' ,
+                imgURL:'https://cn.vuejs.org/images/logo.png',
+                aHref:'www.baidu.com'
+            }
+        })
+    </script>
+</body>
+</html>
