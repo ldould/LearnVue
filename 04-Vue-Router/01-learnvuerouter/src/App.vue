@@ -11,9 +11,18 @@
     <button @click="aboutClick">关于</button> -->
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
-    <router-link :to="'/user/'+ userid">用户</router-link>
+    <!-- <router-link :to="'/user/'+ userId">用户</router-link> -->
+    <!-- <router-link to="/profile">档案</router-link> -->
+    <!-- <router-link :to="{path:'/profile',query:{name:'hh',age:18,height:1.8}}">档案</router-link> -->
 
+
+     <button @click="userClick">用户</button>
+    <button @click="profileClick">档案</button>
+
+    <keep-alive exclude="Profile,User">
     <router-view/>
+    </keep-alive>
+    
   </div>
 </template>
 
@@ -22,7 +31,7 @@ export default {
   name: 'App',
   data(){
     return{
-      userid:'lisi'
+      userId:'lisi'
     }
   },
   methods:{
@@ -38,6 +47,19 @@ export default {
      
     //  this.$router.push('/about')
       this.$router.replace('/about').catch(err => {})
+   },
+   userClick(){
+     this.$router.push('/user/' + this.userId).catch(err => {})
+   },
+   profileClick(){
+     this.$router.push({
+       path:'/profile',
+       query:{
+         name:'yaoming',
+         age:40,
+         height:2.0
+       }
+     })
    }
   }
 }
