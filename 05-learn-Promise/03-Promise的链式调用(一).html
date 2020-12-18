@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise的基本使用</title>
+</head>
+
+<body>
+    <script>
+
+        //  参数 -> 函数(resolve, reject)
+        //  resolve, reject本身它们又是函数
+        //  链式编程
+        new Promise((resolve, reject) => {
+            //第一次网络请求的代码
+            setTimeout(() => {
+                //一旦调用resolve函数就会来到then函数
+                resolve()
+            }, 1000)
+        }).then(() => {
+            // 第一次拿到结果的处理代码
+            console.log('hello world')
+
+
+            return new Promise((resolve, reject) => {
+                //第二次网络请求的代码
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+            }).then(() => {
+                // 第二次拿到结果的处理代码
+                console.log('hello vuejs')
+
+
+                return new Promise((resolve, reject) => {
+                    //第三次网络请求的代码
+                    setTimeout(() => {
+                        resolve()
+                    }, 1000)
+                }).then(() => {
+                    // 第三次拿到结果的处理代码
+                    console.log('hello python')
+                })
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>
